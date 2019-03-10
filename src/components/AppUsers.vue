@@ -24,8 +24,8 @@
             <td>{{ user.email }}</td>
             <td>{{ user.phone }}</td>
             <td>{{ user.registered }}</td>
-            <td><button class="button button--delete" type="button" @click="deleteUser(user.id)">Удалить</button></td>
-          </router-link>
+          </router-link>  
+          <button class="button button--delete" type="button" @click="deleteUser(user.id)">Удалить</button>
         </tr>
       </table>
       <p class="users__count">Всего пользователей: {{ count }}</p>
@@ -85,6 +85,9 @@
     width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
+    height: calc(100vh - 200px);
+    overflow: auto;
+    display: block;
 
     th, tr {
       border-bottom: 1px solid #e2e2e2;
@@ -116,7 +119,8 @@
 
   .users__count {
     text-align: left;
-    font-weight: bold
+    font-weight: bold;
+    margin-top: 25px;
   }
 
   .preloader {

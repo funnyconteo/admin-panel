@@ -1,8 +1,8 @@
-# study_project
+# admin panel
 
-## Project setup
+## Json server
 ```
-npm install
+npm run fake
 ```
 
 ### Compiles and hot-reloads for development

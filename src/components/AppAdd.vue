@@ -1,46 +1,46 @@
 <template>
   <div class="add">
-    <h1 class="title">Добавление пользователя</h1>
+    <slot name="title"></slot>
     <div class="add__wrapper">
       <form class="form" action="#" @submit.prevent>
         <fieldset class="fieldset">
           <div class="field-wrap">
             <label for="first-name">Имя</label>
-            <input type="text" id="first-name" v-model="NewUser.firstName">
+            <input type="text" id="first-name" v-model="user.firstName">
           </div>
           <div class="field-wrap">
             <label for="last-name">Фамилия</label>
-            <input type="text" id="last-name" v-model="NewUser.lastName">
+            <input type="text" id="last-name" v-model="user.lastName">
           </div>
           <div class="field-wrap">
             <label for="balance">Баланс</label>
-            <input type="text" id="balance" v-model="NewUser.balance">
+            <input type="text" id="balance" v-model="user.balance">
           </div>
           <div class="field-wrap">
             <label for="phone">Телефон</label>
-            <input type="tel" id="phone" v-model="NewUser.phone">
+            <input type="tel" id="phone" v-model="user.phone">
           </div>
           <div class="field-wrap">
             <label for="address">Адрес</label>
-            <input type="tel" id="address" v-model="NewUser.address">
+            <input type="tel" id="address" v-model="user.address">
           </div>
           <div class="field-wrap">
             <label for="company">Компания</label>
-            <input type="tel" id="company" v-model="NewUser.company">
+            <input type="tel" id="company" v-model="user.company">
           </div>
           <div class="field-wrap">
             <label for="email">Email</label>
-            <input type="email" id="email" v-model="NewUser.email">
+            <input type="email" id="email" v-model="user.email">
           </div>
           <div class="field-wrap">
             <label for="age">Возраст</label>
-            <input type="number" id="age" v-model="NewUser.age">
+            <input type="number" id="age" v-model="user.age">
           </div>
         </fieldset>
       </form>
       <div class="add__preview-wrapper">
-        <pre class="add__preview">{{ NewUser }}</pre>
-        <button class="button" type="button" @click="addUser()">Добавить</button>
+        <pre class="add__preview">{{ user }}</pre>
+        <slot name="button"></slot>
       </div>
     </div>   
   </div>
@@ -49,35 +49,12 @@
 <script>
   export default {
     name: "AppAdd",
-    data: () => ({
-      NewUser: {
-        firstName: '',
-        lastName: '',
-        balance: '',
-        phone: '',
-        address: '',
-        company: '',
-        email: '',
-        age: '',
-        registered: ''
-      }
-    }),
-    mounted() {
-      this.date()
+    model: {
+      prop: 'user'
     },
-    methods: {
-      date() {
-        let date = new Date();
-        let year = date.getFullYear()
-        let mounth = date.getMonth() + 1
-        let day = date.getDate()
-        if (mounth < 10) mounth = '0' + mounth
-        if (day < 10) day = '0' + day
-        let regDate = year + '-' + mounth + '-' + day
-        this.NewUser.registered = regDate
-      },
-      addUser() {
-        this.$store.dispatch('addUser', this.NewUser)
+    props: {
+      user: {
+        type: Object,
       }
     },
   }
@@ -107,6 +84,11 @@
     text-align: left;
     line-height: 1.5;
     font-size: 1.2rem;
+    white-space: pre-wrap;
+  }
+
+  .button--add {
+    background-color: rgba(66, 243, 112, 0.4);
   }
 
 </style>

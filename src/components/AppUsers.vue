@@ -53,12 +53,9 @@
 
   export default {
     mounted() {
-      this.getUsers()
+      return this.$store.dispatch('getUsers')
     },
     methods: {
-      getUsers() {
-        return this.$store.dispatch('getUsers')
-      },
       deleteUser(id) {
         return this.$store.dispatch('deleteUser', id)
       }
@@ -85,9 +82,7 @@
     width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
-    height: calc(100vh - 200px);
-    overflow: auto;
-    display: block;
+
 
     th, tr {
       border-bottom: 1px solid #e2e2e2;
@@ -130,6 +125,7 @@
   .button--delete {
     font-size: .7rem;
     padding: 5px 5px;
+    background-color: rgba(243, 70, 66, 0.4);
   }
 
 </style>
